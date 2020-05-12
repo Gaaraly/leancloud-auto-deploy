@@ -2,13 +2,22 @@
 on:
   push:
   schedule:
-    - cron: '0 0 * * *' 
+    - cron: '0 13 * * *' 
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to LeanEngine
-        uses: enflo/curl-action@v1.2
-        with:
-          curl: -X POST https://console.leancloud.app/1.1/engine/groups/web/production/version?gitTag=master&token=${{ secrets.DEPLOY_TOKEN }}
+    - uses: actions/checkout@master
+
+    ### 唤醒 https://immmmm.com
+    - name: Deploy to LeanEngine lmm
+      uses: enflo/curl-action@master
+      with:
+        curl: -X POST https://console.leancloud.app/1.1/engine/groups/web/production/version?gitTag=master&token=${{ secrets.DEPLOY_TOKEN }}
+
+    ### 唤醒 https://i.immmmm.com
+    - name: Deploy to LeanEngine lxm
+      uses: enflo/curl-action@master
+      with:
+        curl: -X POST https://console.leancloud.app/1.1/engine/groups/web/production/version?gitTag=master&token=${{ secrets.DEPLOY_TOKEN1 }}
