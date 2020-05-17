@@ -10,14 +10,8 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    ### 唤醒 https://immmmm.com
+    ### 唤醒 https://charmingu.club
     - name: Deploy to LeanEngine lmm
       uses: enflo/curl-action@master
       with:
         curl: -X POST https://console.leancloud.app/1.1/engine/groups/web/production/version?gitTag=master&token=${{ secrets.DEPLOY_TOKEN }}
-
-    ### 唤醒 https://i.immmmm.com
-    - name: Deploy to LeanEngine lxm
-      uses: enflo/curl-action@master
-      with:
-        curl: -X POST https://console.leancloud.app/1.1/engine/groups/web/production/version?gitTag=master&token=${{ secrets.DEPLOY_TOKEN1 }}
