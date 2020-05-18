@@ -1,0 +1,17 @@
+# 定时重新部署，国际时间0点
+on:
+  push:
+  schedule:
+    - cron: '0 0 * * *' 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+
+    ### 唤醒 https://charmingu.club
+    - name: Deploy to LeanEngine lmm
+      uses: enflo/curl-action@master
+      with:
+        curl: -X POST https://console.leancloud.app/1.1/engine/groups/web/production/version?gitTag=master&token=${{ secrets.DEPLOY_TOKEN }}
